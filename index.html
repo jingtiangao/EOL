@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Research</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/sitelogo.png" alt="" /></span><span class="title">Home</span>
+								</a>
+
+							<!-- Nav -->
+							
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+							
+						</div>
+					</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="https://jingtiangao.github.io/">Home</a></li>
+							<li><a href="https://jingtiangao.github.io/">Bio</a></li>
+							<li><a href="https://jingtiangao.github.io/">Publications</a></li>
+							<!-- <li><a href="elements.html">Elements</a></li> -->
+						</ul>
+					</nav>
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Epsilon Transformation file execution code tracking</h1>
+							
+								<a class="system-link" href="https://github.com/jingtiangao/ETL-file-execution-code-tracking" target="_blank">source code </a>
+
+
+								<p>Language related: Java
+Tool usage: Eclipse
+Epsilon: is a collection of modeling languages and tools for modeling engineering
+The subject is mainly related to ETL (Epsilon Transformation) and EOL (Epsilon Object) languages. ETL inherits EOL and is mainly used for transformation between models</p>
+<img src="images/1.png">
+								<img src="images/2.png">
+								<p>First follow this guide
+https://www.eclipse.org/epsilon/doc/articles/running-from-source/
+Clone Epsilon's source code library and right-click all packages in the plugins, features and tests three folders to complete the import project.
+</p> 
+								<p>The location of the main files involved in the source code:
+Package name org.eclipse.epsilon.common.parse
+AST.java
+Package name org.eclipse.epsilon.eol.execute.control
+          IExecutionListener.java
+Package name org.eclipse.epsilon.common.module
+          ModuleElement.java
+</p> 
+								<p>The realization flow chart of the specific idea code (the ultimate goal is to obtain the code line that runs after the execution of the ETL file)
+
+In order to obtain the Executed lines (executed code), it is necessary to record the running of the ETL file. Before the ETL runs, it will be compiled into an AST (abstract syntax tree). Each node of this AST is the module elements of the ETL, so that you can view it The activation status of AST is used to determine the line of code running. The method for how to establish the relationship between ETL and AST nodes (module elements) is shown in the figure below.
+</p>  
+<img src="images/3.png">
+								<p>ETL inherits EOL, so it also inherits the ExecutionListener interface in the EolModule module. The function of this interface can be instantiated as needed. There are three methods in this interface.
+The main methods used in this subject are
+finishedExecuting(ModuleElment ast, Objct result, IEolContext context)
+This method will run every time the AST node is called. The first attribute of the method is ModuleElement ast, which represents the last node executed, so by marking this node we can know which ETL statements have been executed.
+
+And there is a method in ModuleElement called:
+getRegine()
+The return value of this method is the row and column data
+For example, "1:1-20:30" means that this ModuleElement runs from the first line and the first column of the code to the 20th line and 30th column.
+
+Therefore, by using the above two methods, you can instantiate the finishedExecuting() method in the ExecutionListener interface interface, and record the row and column data returned after each AST node is run in the instantiated method.
+</p> 
+								
+								<img src="images/4.png">
+											
+                            
+							
+						</div>
+
+					</div>
+
+				<!-- Footer -->
+				<!--
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="field half first">
+										<input type="text" name="name" id="name" placeholder="Name" />
+									</div>
+									<div class="field half">
+										<input type="email" name="email" id="email" placeholder="Email" />
+									</div>
+									<div class="field">
+										<textarea name="message" id="message" placeholder="Message"></textarea>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="special" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+				-->
+					<footer>
+						<div class="inner">
+							
+							<ul class="copyright">
+								<li>&copy; chuyang gao. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+
+					</footer
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
